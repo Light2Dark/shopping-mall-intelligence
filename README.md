@@ -1,3 +1,17 @@
-# Shopping Mall Intelligence
+# Shopping Route Problem
 
-An assignment for Computational Intelligence, figuring out the best path to take for the use cases below, using CI Algorithms.
+The shopping route problem involves finding the optimal route within a mall floorplan for a shopper to visit shops with minimal walking distance while fulfilling a list of requirements. This problem becomes more complex with multiple target shops and additional criteria such as price, category, and crowd density.
+
+## Project Overview
+
+This project involves implementing a shopping mall design and categorizing locations based on their functions. An algorithm based on Ant Colony Optimization (ACO) is used to compute the optimal path based on customer use cases. The ACO method helps to efficiently find satisfactory routes based on the given requirements without iterating through every possible path sequence.
+
+## Getting Started
+
+To run this project, you need to install the required software and hardware prerequisites. These requirements are listed in the README file in the project's root directory.
+
+## Results
+
+The ACO algorithm was tested on a predetermined set of target destinations, and satisfactory routes were consistently provided based on the given requirements. Additional modifications to the algorithm can be made to accommodate other criteria. 
+
+## Images
