@@ -1,9 +1,8 @@
-import random
 import matplotlib.pyplot as plt
-from places import Location, Walkway, Entrance, Shop
+from places import Location, Walkway, Opening, Shop
 from road import Road
 from ant import Ant
-from data import PriceLevel, shop_list, entrance_list, walkway_list, step_cost, shop_list_crowd_price
+from data import shop_list, opening_list, walkway_list, step_cost, shop_list_crowd_price
 
 # visualise
 def create_graph(locs):
@@ -13,7 +12,7 @@ def create_graph(locs):
   locs_y = [loc.coordinates[1] for key, loc in locs.items()]
   categories = [loc.__class__.__name__ for key, loc in locs.items()]
 
-  colors = {'Shop': 'blue', 'Entrance': 'red', 'Walkway': 'green'}
+  colors = {'Shop': 'blue', 'Opening': 'red', 'Walkway': 'green'}
 
   ax.scatter(locs_x, locs_y, c=[colors.get(cat) for cat in categories])
   ax.set_aspect(aspect=1.0)
@@ -76,7 +75,7 @@ def set_shops(locations):
   return locations
   
 if __name__ == "__main__":
-  # Instantiate Shop, Walkway, Entrance objects w/ lists provided
+  # Instantiate Shop, Walkway, Opening objects w/ lists provided
   locations = {}
   
   # set shops
@@ -87,8 +86,8 @@ if __name__ == "__main__":
     locations[name] = Walkway(name)
     locations[name].set_coordinates([coord1, coord2])
 
-  for coord1, coord2, name in entrance_list:
-    locations[name] = Entrance(name)
+  for coord1, coord2, name in opening_list:
+    locations[name] = Opening(name)
     locations[name].set_coordinates([coord1, coord2])
   
   roads = []
@@ -98,18 +97,12 @@ if __name__ == "__main__":
     locations[city2].add_road(road)
     roads.append(road)
 
-  # print(type(locations['OpeningTwo']))
-
-  # ***** Preprocessing to determine target dest - category, price ****
-
-  # Define origin and destination cities
+  # Define origin and destination locations
   origin = locations['OpeningTwo']
-  # targetShops = [locations['Fleurs'], locations['McDonalds']]
-  # targetShops = [locations['Acer'], locations['RalphLauren'], locations['Kinokuniya']]
-  # targetShops = [locations['H&M'], locations['Tealive'], locations['McDonalds']]
-  targetShops = [locations['HP'], locations['Fleurs'], locations['Kinokuniya']]
-  # targetShops = [locations['HP']]
 
+  targetShops = [locations['HP'], locations['Fleurs'], locations['Levis'], locations['Daboba'], locations['Kinokuniya']]
+  # targetShops = ['Technology', 'Technology', 'Food', 'Food', 'Fashion']
+  
   # Define ACO parameters
   n_ant = 20    # Number of ants
   alpha = 1     # Pheromone influence constant
@@ -124,8 +117,8 @@ if __name__ == "__main__":
   ants = [Ant() for _ in range(n_ant)]
   
   # Termination threshold
-  max_iteration = 30
-  percentage_of_dominant_path = 0.9
+  max_iteration = 10
+  percentage_of_dominant_path = 0.7
   
   iteration = 0
 
@@ -139,13 +132,12 @@ if __name__ == "__main__":
       # reset the path of the ant
       ant.reset()
       # identify the path of the ant
-      ant.get_path(origin, targetShops, alpha, locations, roads)
+      ant.getPath(origin, targetShops, alpha, locations, roads)
     # loop through all roads
     for road in roads:
       # evaporate the pheromone on the road
       road.evaporate_pheromone(rho)
       # deposit the pheromone
-      # road.deposit_pheromone(ants)
       road.deposit_pheromone_crowd_price(ants)
 
     # visualise

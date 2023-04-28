@@ -50,8 +50,8 @@ shop_list = [  # [x,y,name,category]
   [345, 95, "HP", "Technology"],
 ]
 
-# Entrance/Exit coordinates
-entrance_list = [
+# Opening/Exit coordinates
+opening_list = [
   [138, 352, "OpeningOne"],
   [384, 30, "OpeningTwo"]
 ]

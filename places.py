@@ -17,10 +17,12 @@ class Location:
 class Walkway(Location):
   def __init__(self, name):
     super().__init__(name)
+    self.category = None
 
-class Entrance(Location):
+class Opening(Location):
   def __init__(self, name):
     super().__init__(name)
+    self.category = 'Opening'
 
 class Shop(Location):
   def __init__(self, name):

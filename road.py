@@ -19,7 +19,7 @@ class Road:
     for ant in ants:
       if self in ant.path:
         # Deposited pheromone is inversely proportional to path length
-        deposited_pheromone += 5/ant.get_path_length()**1
+        deposited_pheromone += 5/ant.getAntPathLength()**1
     self.pheromone += deposited_pheromone
       
   # deposit pheromone but factoring in price, crowd and walking distance    
@@ -31,11 +31,9 @@ class Road:
         cost = 0
         if (type(self.connectedLocs[-1]) == places.Shop):   # end of the road is the destination
           shop: places.Shop = self.connectedLocs[-1]
-          cost = (1/3 * ant.get_path_length()**1)  + (1/3 * 1/shop.crowd) + (1/3 * 1/shop.price.value)
+          cost = (1/3 * ant.getAntPathLength()**1)  + (1/3 * 1/shop.crowd) + (1/3 * 1/shop.price.value)
         else:
-          cost = ant.get_path_length()**1
+          cost = ant.getAntPathLength()**1
         deposited_pheromone += 5/cost
         
     self.pheromone += deposited_pheromone
-
-  # **** Pheromone increase function based on connectedLoc types (???) ****
