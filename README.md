@@ -15,3 +15,10 @@ To run this project, you need to install the required software and hardware prer
 The ACO algorithm was tested on a predetermined set of target destinations, and satisfactory routes were consistently provided based on the given requirements. Additional modifications to the algorithm can be made to accommodate other criteria. 
 
 ## Images
+Shopping Mall Floor Plan 
+![image](https://user-images.githubusercontent.com/19585239/235106323-d7d3ce5c-9c38-454d-8f6d-4a2e701a232c.png)
+
+Full Shopping Mall with Nodes, Paths and Costs
+![image](https://user-images.githubusercontent.com/19585239/235106370-42b5ea5e-a569-46d9-ad71-ce1336cd5c8e.png)
+
+![image](https://user-images.githubusercontent.com/19585239/235106521-a3986bcf-9d4f-49bb-b9ad-7bc0d5268b52.png)
